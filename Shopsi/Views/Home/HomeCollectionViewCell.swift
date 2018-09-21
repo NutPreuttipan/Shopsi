@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainCollectionViewCell: UICollectionViewCell {
+class HomeCollectionViewCell: UICollectionViewCell {
     
     //hot deal
     @IBOutlet weak var imageViewHotDealImage: UIImageView!

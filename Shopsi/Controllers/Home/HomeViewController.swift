@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
+class HomeViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate {
 
     @IBOutlet weak var collectionViewHotDeal: UICollectionView!
     @IBOutlet weak var collectionViewNewProduct: UICollectionView!
@@ -39,7 +39,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         if collectionView == self.collectionViewHotDeal {
-            let hotDealCell: MainCollectionViewCell = self.collectionViewHotDeal.dequeueReusableCell(withReuseIdentifier: "cellHotDeal", for: indexPath) as! MainCollectionViewCell
+            let hotDealCell: HomeCollectionViewCell = self.collectionViewHotDeal.dequeueReusableCell(withReuseIdentifier: "cellHotDeal", for: indexPath) as! HomeCollectionViewCell
             
             hotDealCell.imageViewHotDealImage.image = UIImage(named: "dummy4.jpg")
             hotDealCell.labelHotDealDetail.text = "สกู๊ตเตอร์ไฟฟ้า Scooter Chuanglu มีดิสเบรค ทำความเร็วได้ 50+ กม./ชม."
@@ -52,7 +52,7 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
             
             return hotDealCell
         } else {
-            let newProductCell: MainCollectionViewCell = self.collectionViewNewProduct.dequeueReusableCell(withReuseIdentifier: "cellNewProduct", for: indexPath) as! MainCollectionViewCell
+            let newProductCell: HomeCollectionViewCell = self.collectionViewNewProduct.dequeueReusableCell(withReuseIdentifier: "cellNewProduct", for: indexPath) as! HomeCollectionViewCell
             
             
             newProductCell.imageViewNewProductImage.image = UIImage(named: "dummy5.jpg")
@@ -84,19 +84,17 @@ class MainViewController: UIViewController, UICollectionViewDelegate, UICollecti
     }
     
     @objc func setupScrollViewAutoScroll() {
-        
         let pageWidth:CGFloat = self.scrollViewHighlightProduct.frame.width
         let maxWidth:CGFloat = pageWidth * CGFloat(imageArray.count)
         let contentOffset:CGFloat = self.scrollViewHighlightProduct.contentOffset.x
-        
         var slideToX = contentOffset + pageWidth
         
         if  contentOffset + pageWidth == maxWidth {
             slideToX = 0
         }
         
-//        self.scrollViewHighlightProduct.setContentOffset(CGRect(x: slideToX, y: 0, width: pageWidth, height: self.scrollViewHighlightProduct.frame.height),animated: true)
-        self.scrollViewHighlightProduct.scrollRectToVisible(CGRect(x:slideToX, y:0, width:pageWidth, height:self.scrollViewHighlightProduct.frame.height), animated: true)
+        self.scrollViewHighlightProduct.setContentOffset(CGPoint(x: slideToX, y: 0),animated: true)
+//        self.scrollViewHighlightProduct.scrollRectToVisible(CGRect(x: slideToX, y: 0, width: self.scrollViewHighlightProduct.frame.width, height: self.scrollViewHighlightProduct.frame.height), animated: true)
     }
     
     func setupStrikeThroughLabel(label: UILabel) {
